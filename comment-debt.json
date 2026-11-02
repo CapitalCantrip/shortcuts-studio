@@ -1,0 +1,15 @@
+{
+  "claude/skills/shortcuts-playground/scripts/generate_healthkit_reference.py": 7,
+  "claude/skills/shortcuts-playground/scripts/lookup_action_grounding.py": 10,
+  "claude/skills/shortcuts-playground/scripts/select_shortcut_icon_color.py": 9,
+  "claude/skills/shortcuts-playground/scripts/test_random_mixed_shortcuts.py": 18,
+  "claude/skills/shortcuts-playground/scripts/test_wiring_regressions.py": 35,
+  "claude/skills/shortcuts-playground/scripts/validate_shortcut.py": 190,
+  "codex/skills/shortcuts-playground/scripts/generate_healthkit_reference.py": 7,
+  "codex/skills/shortcuts-playground/scripts/lookup_action_grounding.py": 10,
+  "codex/skills/shortcuts-playground/scripts/select_shortcut_icon_color.py": 9,
+  "codex/skills/shortcuts-playground/scripts/test_random_mixed_shortcuts.py": 18,
+  "codex/skills/shortcuts-playground/scripts/test_wiring_regressions.py": 35,
+  "codex/skills/shortcuts-playground/scripts/validate_shortcut.py": 190,
+  "tests/test_issue_regressions.py": 1
+}
