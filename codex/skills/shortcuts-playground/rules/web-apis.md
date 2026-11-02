@@ -13,7 +13,7 @@ Read when the shortcut calls a web API, builds a request body, or parses JSON.
 
 - Store API tokens in a Text action, with a Comment before it linking to the service's API-key page.
 - Credentials in shell snippets, examples, logs and transcripts are placeholders or env vars, never real values.
-- Tokens come from a Text action. Loading one from a file needs the user's request plus a Comment containing `ALLOW_TOKEN_FILE` saying why.
+- Loading a token from a file needs the user's request plus a Comment containing `ALLOW_TOKEN_FILE` saying why.
 - Authorization headers: `Basic {base64(user:pass)}` or `Bearer {token}`, as the API requires.
 
 ## Building the request

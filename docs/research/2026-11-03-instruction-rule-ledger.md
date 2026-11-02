@@ -7,12 +7,12 @@ Where each rule in the four always-read files (plugin 1.2.1) went in the rewrite
 | File | Before (bytes) | After (bytes) | Always read? |
 |---|---|---|---|
 | `claude/agents/shortcut-builder.md` | 15,998 | 1,547 | yes, for builds |
-| `SKILL.md` | 44,830 | 10,900 | yes, preloaded by both agents |
+| `SKILL.md` | 44,830 | 11,992 | yes, preloaded by both agents |
 | `BEST_PRACTICES.md` | 48,205 | ~1,000 (index) | was first in the reading order; now nothing requires it |
-| `claude/agents/shortcut-remixer.md` | 20,281 | 4,210 | yes, for remixes |
-| **Always read for a build** | **109,033** | **12,447** | |
+| `claude/agents/shortcut-remixer.md` | 20,281 | 4,375 | yes, for remixes |
+| **Always read for a build** | **109,033** | **13,539** | |
 
-The rules moved behind pointers total about 22.7 KB across `rules/`; a build reads only the files whose branch it touches.
+The rules moved behind pointers total about 22.7 KB across `rules/`; a build reads only the files whose branch it touches. The Capture Card brief touches three branches (control-flow, files-and-media, dates): 13,539 + 9,204 = 22,743 bytes read in all. A brief touching all six authoring branches would read about 34 KB.
 
 ## Old `shortcut-builder.md`
 
@@ -62,7 +62,7 @@ The rules moved behind pointers total about 22.7 KB across `rules/`; a build rea
 | Recommended reading order | SKILL branch table; BEST_PRACTICES no longer mandatory |
 | Quick Start XML, Hello World | SKILL *Root plist* summary; full shapes stay in `PLIST_FORMAT.md` and `EXAMPLES.md` |
 | Core concepts (actions, variable references, control flow) | SKILL *Actions and wiring*; `rules/control-flow` |
-| Common actions table | `ACTIONS.md` holds every row; Delete Photos `photos` key → `rules/files-and-media` |
+| Common actions table | SKILL *Evidence* key table (identifier + main keys); Use Model's OS 27 keys → SKILL *Targets*; Repeat/If/Menu keys → `rules/control-flow` and `CONTROL_FLOW.md` (linked from it); Translate keys → `rules/text-and-data`; Delete Photos `photos` key → `rules/files-and-media` |
 | Detailed reference file list | SKILL *Deeper reference* line. `TOOLKIT_SNAPSHOT.md` and `CHANGELOG.md` dropped from it: background for maintainers, not authoring |
 | Golden library (index first, no bulk load, may predate rules) | SKILL pipeline step 2 |
 | Icon resolver | SKILL pipeline step 3 |
@@ -181,7 +181,7 @@ The rules moved behind pointers total about 22.7 KB across `rules/`; a build rea
 | Path parsing rules and the escalation message | remixer step 2. Option 3 ("name the shortcut and I'll ask you to export it") dropped: it was option 2 restated |
 | Source checks (exists, not AEA1, has `WFWorkflowActions`) | remixer step 3 |
 | Step 0 output settings | `resolve-output`, remixer step 1 |
-| Read in chunks above 2,000 lines | no-op: the Read tool pages large files itself |
+| Read in chunks above 2,000 lines | remixer step 4; step 9 copies the source with one Python call so a long source is never truncated |
 | Baseline validation | remixer step 4 |
 | Examples of which reference file to load | replaced by the SKILL branch table |
 | Plan the diff | remixer step 6 |

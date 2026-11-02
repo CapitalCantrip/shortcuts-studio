@@ -130,7 +130,7 @@ class FormatDateGuidanceTests(unittest.TestCase):
     def test_no_doc_tells_the_agent_to_use_wfdateformatstring(self) -> None:
         for tree in ("claude", "codex"):
             root = REPO_ROOT / tree / "skills/shortcuts-playground"
-            for doc in root.glob("*.md"):
+            for doc in [*root.glob("*.md"), *root.glob("rules/*.md")]:
                 if doc.name == "CHANGELOG.md":
                     continue
                 with self.subTest(doc=f"{tree}/{doc.name}"):

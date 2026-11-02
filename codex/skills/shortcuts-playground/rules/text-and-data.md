@@ -13,7 +13,7 @@ Wrong keys import fine but show an empty input in the editor.
 | Change Case | `is.workflow.actions.text.changecase` | `text` |
 | Split Text | `is.workflow.actions.text.split` | `text`; with `WFTextSeparator = Custom` also `WFTextCustomSeparator` (a single space is valid) |
 | Get URLs from Input | `is.workflow.actions.detect.link` | `WFInput` as a `WFTextTokenString` placeholder |
-| Translate Text | `is.workflow.actions.text.translate` | `WFInputText`; languages as display names (`Spanish`, `Chinese (Simplified)`), not ISO codes |
+| Translate Text | `is.workflow.actions.text.translate` | `WFInputText`; `WFSelectedFromLanguage` and `WFSelectedLanguage` take display names (`Spanish`, `Chinese (Simplified)`), not ISO codes |
 | Base64 Encode/Decode | `is.workflow.actions.base64encode` | `WFInput`, always explicit |
 
 - Replace Text that deletes a match: omit `WFReplaceTextReplace` (an explicit empty string also works).

@@ -227,6 +227,7 @@ shortcuts-playground-plugin/
 │   └── shortcuts-playground/    # complete Shortcuts knowledge base
 │       ├── SKILL.md
 │       ├── BEST_PRACTICES.md
+│       ├── rules/               # per-kind rules SKILL.md points to
 │       ├── ACTIONS.md
 │       ├── APPINTENTS.md
 │       ├── PARAMETER_TYPES.md

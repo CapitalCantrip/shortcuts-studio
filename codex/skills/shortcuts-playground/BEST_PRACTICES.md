@@ -19,7 +19,7 @@ These guidelines are mandatory for every shortcut built with this skill. If guid
 - For Authorization headers, use `Basic {base64(user:pass)}` or `Bearer {token}` as required by the API.
 - After **Get Contents of URL**, parse structured responses with **Detect Dictionary** and **Get Dictionary Value** (dot notation for nested keys) instead of string parsing; guard optional parents before reading nested keys (for example, do not call `error.message` directly before checking `error` exists).
 - JSON booleans extracted via **Detect Dictionary** + **Get Dictionary Value** are often coerced to numeric `1`/`0` in Shortcuts, not string `true`/`false`; do not use string checks like `Contains "true"` on those values.
-- For API boolean branching, prefer numeric conditions (`Is Greater Than 0` or `Equals 1`) or normalize through a **Text** action and compare to `"1"`/`"0"`.
+- For API boolean branching, prefer numeric conditions (`Is Greater Than 0`) or normalize through a **Text** action and compare to `"1"`/`"0"`.
 - JSON `null` values are coerced to empty/nothing in Shortcuts; do not compare to the string `"null"` and always guard optional fields before branching.
 - For JSON API responses, keep `ShowHeaders` disabled unless explicitly needed; if enabled, account for changed output shape before dictionary extraction.
 - For JSON request bodies, use `WFJSONValues` for flat key/value payloads so the body is preserved in the Shortcuts editor.
@@ -214,7 +214,7 @@ After generating a shortcut, run the local validator and loop until it passes. T
   | `1003` | is between | numeric | `WFNumberValue` (lower) + `WFAnotherNumber` (upper, attachment) |
 
   **Common confusions to avoid:**
-  - Code `0` is `is less than` — there is no numeric "equals" code in the modern conditional. To compare two numbers for equality, either use code `4` (string equals) on text-coerced numbers, or build an Any-of-two block with `is greater than or equal to N` AND `is less than or equal to N`.
+  - Code `0` is `is less than` — there is no numeric "equals" code in the modern conditional. To compare two numbers for equality, either use code `4` (string equals) on text-coerced numbers, or build an All-of-two block with `is greater than or equal to N` AND `is less than or equal to N`.
   - Code `2` (`is greater than`) and code `3` (`is greater than or equal to`) differ by inclusivity — easy to swap.
   - Code `4` (string equals) and code `99` (substring contains) are NOT interchangeable.
 

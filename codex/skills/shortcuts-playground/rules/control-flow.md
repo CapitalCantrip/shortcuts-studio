@@ -5,7 +5,7 @@ Read when the shortcut uses If, Choose from Menu, Choose from List, a Repeat, or
 ## Every control-flow block
 
 - Start, middle and end actions share one `GroupingIdentifier`; `WFControlFlowMode` is an integer: `0` start, `1` middle (Otherwise, menu case), `2` end. Every block is closed.
-- The action right before each start is a Comment with a bulleted wiring list (see SKILL.md, *Comments*).
+- The action right before each start is a Comment with a bulleted wiring list (SKILL.md, Comment rules).
 
 ## If
 

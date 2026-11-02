@@ -3,12 +3,13 @@ set -euo pipefail
 
 DEFAULT_OUTPUT_DIR="$HOME/Documents/Shortcuts Playground"
 DEFAULT_SIGNING_MODE="anyone"
+EX_USAGE=64
 CONFIGURED_OUTPUT_DIR=""
 CONFIGURED_SIGNING_MODE=""
 
 usage() {
   printf 'Usage: resolve-output [--output-dir DIR] [--mode anyone|people-who-know-me]\n' >&2
-  exit 64
+  exit "$EX_USAGE"
 }
 
 unset_if_placeholder() {

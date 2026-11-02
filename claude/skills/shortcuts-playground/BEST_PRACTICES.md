@@ -1,6 +1,6 @@
 # Best Practices
 
-The rules that used to live here are now split by kind of shortcut, so an agent reads only the ones its brief needs.
+Rules by kind of shortcut. Read the ones the brief needs.
 
 - Rules every shortcut follows, and the build pipeline: [SKILL.md](SKILL.md)
 - Web APIs and JSON: [rules/web-apis.md](rules/web-apis.md)
