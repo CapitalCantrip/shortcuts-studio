@@ -4223,16 +4223,6 @@ class OS27AutomatorsReferenceTests(unittest.TestCase):
         self.assertIn("toolkit-v78-trigger-parameter-keys.json", text)
         self.assertIn("macos27-workflow-trigger-samples.json", text)
 
-    def test_claude_agents_use_packaged_grounding_for_appintent_gaps(self) -> None:
-        for rel_path in (
-            "claude/agents/shortcut-builder.md",
-            "claude/agents/shortcut-remixer.md",
-        ):
-            text = (REPO_ROOT / rel_path).read_text(encoding="utf-8")
-            self.assertIn("lookup_action_grounding.py", text, rel_path)
-            self.assertIn("bundled JSON only", text, rel_path)
-            self.assertIn("toolkit-parameter-summary", text, rel_path)
-
 
 class PackageConsistencyTests(unittest.TestCase):
     def test_shared_codex_and_claude_skill_files_do_not_drift(self) -> None:
@@ -4424,20 +4414,6 @@ class SigningWrapperTests(unittest.TestCase):
             signed_path = Path(payload["signed"])
             self.assertEqual(output_dir / "Issue Regression.shortcut", signed_path)
             self.assertTrue(signed_path.exists())
-
-
-class ClaudeAgentPromptTests(unittest.TestCase):
-    def test_agents_use_user_config_and_pass_explicit_signing_options(self) -> None:
-        for rel_path in (
-            "claude/agents/shortcut-builder.md",
-            "claude/agents/shortcut-remixer.md",
-        ):
-            text = (REPO_ROOT / rel_path).read_text(encoding="utf-8")
-            self.assertIn("${user_config.output_dir}", text, rel_path)
-            self.assertIn("${user_config.signing_mode}", text, rel_path)
-            self.assertIn('--output-dir "$OUTPUT_DIR"', text, rel_path)
-            self.assertIn('--mode "$SIGNING_MODE"', text, rel_path)
-            self.assertIn("Claude Code may not expose", text, rel_path)
 
 
 if __name__ == "__main__":

@@ -421,7 +421,7 @@ Asks user for a question, sends it to Apple Intelligence, and displays the respo
 
 Presents a menu with three options, each displaying different text.
 
-> **Note:** This example uses bare `<string>` for Show Result `Text` because the values are literal text with no variables. When Show Result displays a **variable**, you MUST use `WFTextTokenString` with a placeholder — see the Critical Variable Wiring Rules in BEST_PRACTICES.md.
+> **Note:** This example uses bare `<string>` for Show Result `Text` because the values are literal text with no variables. When Show Result displays a **variable**, you MUST use `WFTextTokenString` with a placeholder: fields the user reads always take `WFTextTokenString`.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

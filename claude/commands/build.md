@@ -16,7 +16,7 @@ The agent owns the full workflow end-to-end. Your job as the orchestrator is min
 
 ## When the agent escalates
 
-The agent will escalate to you (the orchestrator) if it cannot build — typically because of a documentation gap on an allowlisted action, a validator error it can't fix in 5 iterations, or a brief it can't parse. When that happens:
+The agent escalates to you (the orchestrator) only when it cannot build: a validator error it can't fix in 5 iterations, a brief it can't parse, or a scope question for the user. An action without a documented schema is not an escalation; the agent builds it from ToolKit parameter keys and lists it on the on-device checklist. When the agent does escalate:
 
 - **Do not do the agent's research for it.** Do not grep `~/Documents`, `~/Agent`, `~/.claude`, `~/Library`, `/Applications`, `/System`, or any other user or system path looking for examples or schemas. Those directories are off limits for this command.
 - **The only paths you may read from are:**

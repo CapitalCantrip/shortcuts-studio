@@ -4,8 +4,8 @@ Claude Code skill for AI-assisted generation and remixing of macOS/iOS Shortcuts
 
 ## Documentation Entry Points
 
-- Start with [SKILL.md](SKILL.md) for workflow and high-level rules.
-- Treat [BEST_PRACTICES.md](BEST_PRACTICES.md) as mandatory policy.
+- Start with [SKILL.md](SKILL.md): the build pipeline and the rules every shortcut follows.
+- Rules for each kind of shortcut (web APIs, control flow, dates, text, files, Apple apps) live in [rules/](rules/); [BEST_PRACTICES.md](BEST_PRACTICES.md) indexes them.
 - Use [ACTIONS.md](ACTIONS.md), [APPINTENTS.md](APPINTENTS.md), and [THIRD_PARTY_ACTIONS.md](THIRD_PARTY_ACTIONS.md) as identifier references.
 - Use [HEALTHKIT.md](HEALTHKIT.md) for iOS/iPadOS Health actions.
 - Use [EXAMPLES.md](EXAMPLES.md) and `golden-shortcuts/index.jsonl` for working XML patterns.
@@ -38,7 +38,7 @@ If `shortcuts sign` reports that a validator-clean plist "isn't in the correct f
 | [APPINTENTS.md](APPINTENTS.md) | AppIntent actions (ToolKit v63 base coverage plus target-gated v78 identifiers, parameters, enum values, and research notes) |
 | [PARAMETER_TYPES.md](PARAMETER_TYPES.md) | Parameter value types and serialization formats |
 | [PLIST_FORMAT.md](PLIST_FORMAT.md) | Complete plist structure |
-| [BEST_PRACTICES.md](BEST_PRACTICES.md) | Mandatory generation guidelines |
+| [BEST_PRACTICES.md](BEST_PRACTICES.md) | Index of the per-branch rule files in `rules/` |
 | [HEALTHKIT.md](HEALTHKIT.md) | HealthKit action schemas and examples |
 | [CONTROL_FLOW.md](CONTROL_FLOW.md) | Repeat, conditional, and menu patterns |
 | [AUTOMATION_TRIGGERS.md](AUTOMATION_TRIGGERS.md) | OS 27 ToolKit automation trigger metadata plus exported `WFWorkflowTriggers` samples for automation shortcuts |
@@ -65,6 +65,18 @@ If `shortcuts sign` reports that a validator-clean plist "isn't in the correct f
 | `data/macos27-workflow-trigger-samples.json` | Sanitized exported `WFWorkflowTriggers` samples for OS 27 automation headers |
 | `data/macos27-shortpy-grounding.json` | Reviewed static Apple-derived grounding catalog for macOS 27 action schemas and Shortpy names |
 | `data/healthkit-ios26.2-reference.json` | HealthKit types, category values, workout types, and units |
+
+## Regression suites
+
+Run these when changing validator rules or wiring logic.
+
+```bash
+python3 scripts/test_wiring_regressions.py --write-fixtures /tmp/shortcuts-wiring-regressions
+python3 scripts/test_random_mixed_shortcuts.py --count 50 --min-actions 10
+python3 scripts/test_random_mixed_shortcuts.py --count 50 --min-actions 10 --target-macos 27 --include-os27-actions --sign
+```
+
+The wiring suite covers Weather Detail, Location and Set Name/Rename File cases and exits non-zero on any regression. The random suite writes brand-new shortcuts with at least `--min-actions` distinct actions under `<output dir>/<YYYY-MM-DD>/random-mixed-actions-<runid>/`, retries each up to `--max-attempts` (default 20), and writes `manifest.json`, `results.json` and `summary.md`. The OS 27 flags add Stored Content, Add Item to List, Otherwise If, Get Selected Text, Get What's On Screen and Get Current VPN to every case.
 
 ## Requirements
 
