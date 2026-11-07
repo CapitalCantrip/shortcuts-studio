@@ -1,0 +1,48 @@
+name: Upstream watch
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Open an issue when upstream has commits this fork lacks
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPSTREAM_URL: https://github.com/viticci/shortcuts-playground-plugin.git
+          ISSUE_TITLE: Upstream has new commits to review
+        run: |
+          git remote add upstream "$UPSTREAM_URL"
+          git fetch --quiet upstream main --tags
+          new_commits=$(git log --oneline origin/main..upstream/main | grep -v "^$" || true)
+          if [ -z "$new_commits" ]; then
+            exit 0
+          fi
+          open_issues=$(gh issue list --state open --search "$ISSUE_TITLE in:title" --json number --jq length)
+          if [ "$open_issues" != "0" ]; then
+            exit 0
+          fi
+          latest_tag=$(git describe --tags --abbrev=0 upstream/main 2>/dev/null || echo none)
+          files=$(git diff --stat origin/main...upstream/main | tail -1)
+          {
+            echo "Upstream \`viticci/shortcuts-playground-plugin\` (latest tag: \`$latest_tag\`) has commits this fork lacks."
+            echo
+            echo '```text'
+            echo "$new_commits"
+            echo '```'
+            echo
+            echo "$files"
+            echo
+            echo "Decide per commit: adopt, port into \`rules/*.md\` (instruction files diverge, see ADR-002), or skip. Scripts, validator, data and golden examples can merge directly under ADR-001."
+          } > body.md
+          gh issue create --title "$ISSUE_TITLE" --label needs-triage --body-file body.md
