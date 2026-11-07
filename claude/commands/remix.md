@@ -27,7 +27,7 @@ In all escalation cases: **do not do the agent's work for it.** Do not grep for 
 
 All the same rules that apply to `/shortcuts-playground:build` apply here:
 
-- **Never grep `~/Documents` broadly, `~/Agent`, `~/.claude/skills`, `~/.claude/plugins`, `~/.claude/projects`, `~/Library`, `/Applications`, or `/System`.** Even when the agent escalates on "I don't know this schema" or "I can't find the source." Those paths may contain the user's private files, deleted plugin versions, session logs, or system binaries — none of them are authoritative reference material.
+- **Never grep `~/Documents` broadly, `~/Agent`, `~/.claude/skills`, `~/.claude/plugins`, `~/.claude/projects`, `~/Library`, `/Applications`, or `/System`.** Even when the agent escalates on "I can't find the source." Those paths may contain the user's private files, deleted plugin versions, session logs, or system binaries — none of them are authoritative reference material.
 - **Never run `plutil`, `xxd`, `file`, or other binary inspectors on signed `.shortcut` files.** Signed shortcuts are Apple Encrypted Archives (AEA1); they cannot be read as plaintext plists.
 - **Never mine prior archived shortcuts as a reference corpus** for the agent to crib from. The source the user gave the remixer is its ONLY reference for context; the plugin directory is the ONLY reference for patterns.
 - **Never overwrite the source file.** The remixer writes to `<OUTPUT_DIR>/drafts/<new name>.xml` under a new name so the user's original stays intact.

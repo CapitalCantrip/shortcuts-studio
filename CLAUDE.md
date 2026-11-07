@@ -12,6 +12,10 @@ The five triage roles and the label string each uses here. See `docs/agents/tria
 
 Where the glossary and ADRs live, and how to use their vocabulary. See `docs/agents/domain.md`.
 
+### Decisions and findings
+
+Why the gates ratchet instead of paying upstream debt: `docs/adr/`. The fork's starting numbers (build cost, defects, debt) that #1–#3 are measured against: `docs/research/2026-11-02-fork-baseline.md`.
+
 ### Pull requests
 
 Write every PR body with the `pr` skill: Summary, Evidence, Merge Danger. `.github/pull_request_template.md` holds the same headings.
